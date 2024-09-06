@@ -130,7 +130,7 @@ func _init(data : Dictionary,new_icon : Texture,new_portrait : Texture,new_class
 				var newscript = spellscript.new()
 				spelldict["script"] = newscript
 	else :
-		spells = []
+		spells = [[],[],[],[],[],[],[]]
 
 	if classgd :
 #		print("PlayerCharacter classgd.get_script_method_list() : ", classgd.get_script_method_list())

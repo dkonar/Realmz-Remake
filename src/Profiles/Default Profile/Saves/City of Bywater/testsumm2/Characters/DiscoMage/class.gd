@@ -202,7 +202,7 @@ static func _character_creation_gifts(_character) :
 	print("class.gd adding spell to newly created  sorcerer "+_character.name)
 	resources.load_spell_resources( "res://shared_assets/spells/" )
 	print("class.gd load_spell_resources  finished")
-	_character.add_spell_from_spells_book("Heal Minor Wounds",1) #fuction in creature.gd
+	_character.add_spell_from_spells_book("Heal Small Wounds",1) #fuction in creature.gd
 	_character.add_spell_from_spells_book("Plane of Frost",1)
 	_character.add_spell_from_spells_book("Phase",1)
 	_character.add_spell_from_spells_book("Summon Alien Beetle",1)

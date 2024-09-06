@@ -46,7 +46,7 @@
 		{"weapon_dmg" : {"Physical" : [1,4], "Ice" : [1,2]}, "sound" : "slurpy.wav", "melee_atk_anim_icon" : "ATK_SLM", "melee_inflicted_traits" : [  ["t_poison.gd" , [1] ,1.0]  ] },
 		{"weapon_name" : "Dagger"}
 	 ],
-	 "spells" : [["Heal Minor Wounds", 3]]
+	 "spells" : [["Heal Small Wounds", 3]]
       },
       "scripts" : {"default" : "test_crea_script.gd"}
    }

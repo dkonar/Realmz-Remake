@@ -1,6 +1,8 @@
 import csv
 import os
 import re
+import json
+import shutil
 from lookups import level_spellpoint_lookup
 from spell_utils import (
     generate_filename,
@@ -34,9 +36,8 @@ output_dir = 'gd_scripts'
 # Ensure the output directory exists
 os.makedirs(output_dir, exist_ok=True)
 
-# Note: You'll need to adjust the code that fills in the template to include the new fields and logic.
-# For example, `sp_cost_formula` should be set to `_power*2` for spells like "Enchanted Blade",
-# and `special_effect_function` should include the logic for `add_traits_to_target` when applicable.
+# Dictionary to store spell names for each caster class
+caster_class_spells = {}
 
 # Open the CSV file and read data
 with open(csv_file_path, mode='r', encoding='utf-8') as csv_file:
@@ -87,3 +88,23 @@ with open(csv_file_path, mode='r', encoding='utf-8') as csv_file:
             gdscript_file.write(gdscript_content)
 
         print(f"Generated GDScript file for spell: {row['name']}")
+        # Update the dictionary with the spell name, grouped by level
+        caster_class = row['caster_class']
+        spell_name = row['name']
+        spell_level = row['level']
+
+        if caster_class not in caster_class_spells:
+            caster_class_spells[caster_class] = {}
+
+        if spell_level not in caster_class_spells[caster_class]:
+            caster_class_spells[caster_class][spell_level] = []
+
+        caster_class_spells[caster_class][spell_level].append(spell_name)
+
+        # After processing all rows, save the dictionary to JSON files
+        for caster_class, spells_by_level in caster_class_spells.items():
+            json_filename = f"{caster_class}_spells.json"
+            # Convert the dictionary to an array of arrays grouped by level
+            spells_grouped_by_level = [spells_by_level[level] for level in sorted(spells_by_level)]
+            with open(os.path.join(output_dir, json_filename), 'w', encoding='utf-8') as json_file:
+                json.dump(spells_grouped_by_level, json_file, indent=4)

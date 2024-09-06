@@ -139,7 +139,6 @@ const levelup_bonuses : Dictionary = {
 } 
 
 
-
 static func _mod_equippable(character) :
 	character.equippable_types["Dagger"] +=1
 	character.equippable_types["Throwing Dagger"] -=1
@@ -196,21 +195,14 @@ static func _character_creation_gifts(_character) :
 	var dagger = resources.items_book["Dagger"]
 	_character.inventory.append(dagger.duplicate(true))
 	resources.items_book.clear()
-	
-	_character.spells =  [ [],[],[],[],[],[],[] ]
-	
-	print("class.gd adding spell to newly created  sorcerer "+_character.name)
 	resources.load_spell_resources( "res://shared_assets/spells/" )
-	print("class.gd load_spell_resources  finished")
-	_character.add_spell_from_spells_book("Heal Minor Wounds",1) #fuction in creature.gd
-	_character.add_spell_from_spells_book("Plane of Frost",1)
-	_character.add_spell_from_spells_book("Phase",1)
-	_character.add_spell_from_spells_book("Summon Alien Beetle",1)
-	_character.add_spell_from_spells_book("Bear Form",1)
-	_character.add_spell_from_spells_book("Cosmic Blast",1)
-	_character.add_spell_from_spells_book("Heat Ray",1)
-	_character.add_spell_from_spells_book("Discover Magic",1)
-	print("class.gd DONE adding spell to newly created  sorcerer "+_character.name)
+	var spells = Utils.FileHandler.read_json_array_from_file("res://shared_assets/spells/Sorcerer_spells.json")
+	for level_index in spells.size():
+		var level = spells[level_index]
+		for spell in level:
+			_character.add_spell_from_spells_book(spell, level_index + 1)
+	resources.spells_book.clear()
+	
 
 static func get_max_perma_summons(_character) ->int :
 	return 1

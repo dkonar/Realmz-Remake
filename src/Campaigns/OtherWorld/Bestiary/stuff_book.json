@@ -45,7 +45,7 @@
 	 "inventory" : ["Leather Cap"],
 	 "money" : [0,0,0],
 	 "melee_attacks" : [[1,8,""],[1,2,"Fear"]],
-	 "spells" : [["Heal Minor Wounds", 3]]
+	 "spells" : [["Heal Small Wounds", 3]]
       },
       "scripts" : {}
    }

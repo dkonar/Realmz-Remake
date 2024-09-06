@@ -174,7 +174,7 @@ def get_duration_roll(duration):
 
     scaled_string = ""
     if (duration[2] != 0 or duration[3] != 0):
-        scaled_string = f"\tvar scaled_duration = 0\n\tfor i in range(_power) :\n\t\tscaled_damage += randi_range({duration[2]}, {duration[3]})\n"
+        scaled_string = f"\tvar scaled_duration = 0\n\tfor i in range(_power) :\n\t\tscaled_duration += randi_range({duration[2]}, {duration[3]})\n"
 
     return_string = "return 0"
 

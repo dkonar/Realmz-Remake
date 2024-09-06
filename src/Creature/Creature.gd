@@ -40,7 +40,7 @@ var doing_on_death_action : bool = false #trye while casting on death spells, qu
 var please_remove_from_combat : bool = false
 var reaction_ready : bool = true  # for atatcks of opportunity, set to true on new round
 
-var spells : Array = []
+var spells : Array = [[],[],[],[],[],[],[]]
 var ai_variables : Dictionary = {}  #variables to be accessed by ai, normally  static unlike memory
 
 var used_movepoints : int = 0 #used movement points THIS TURN
@@ -498,13 +498,14 @@ func add_spell_from_source(spellname : String, spellsource : String, slevel : in
 
 func add_spell_from_spells_book(spellname : String, slevel : int) :
 	var resources = NodeAccess.__Resources()
+	print(spellname)
 	var spelldict = resources.spells_book[spellname]
 	add_spell_drom_dict(spelldict, slevel)
 
 func add_spell_drom_dict(spell_dict : Dictionary, slevel : int) :
 	#var slevel = spell_dict["script"].level
-	while spells.size() < level :
-		spells.append([])
+	print("Size: ", spells.size())
+
 	spells[slevel-1].append(spell_dict)
 
 func get_all_spells() -> Array :

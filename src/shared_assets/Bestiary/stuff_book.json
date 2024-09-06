@@ -91,7 +91,7 @@
 	 "inventory" : [[ "Helm of Pain", 1]],
 	 "money" : [0,3,1],
 	 "unarmed_melee_attacks" : [],
-	 "spells" : [["Heal Minor Wounds", 3]]
+	 "spells" : [["Heal Small Wounds", 3]]
 	  },
 	  "scripts" : {"default" : "test_crea_script.gd"}
    }

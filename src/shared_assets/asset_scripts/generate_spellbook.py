@@ -1,6 +1,7 @@
 import os
 import json
 import argparse
+import shutil
 
 # Set up argument parser
 parser = argparse.ArgumentParser(
@@ -45,3 +46,13 @@ with open(json_file_path, 'w', encoding='utf-8') as json_file:
     json.dump(gd_files_content, json_file)
 
 print(f"Your spellbook is in {json_file_path}")
+
+
+# Copy *_spells.json files to the target directory
+for caster_class in ["Sorcerer", "Enchanter", "Priest"]:
+    spell_json_filename = f"{caster_class}_spells.json"
+    spell_json_file_path = os.path.join(source_dir, spell_json_filename)
+    target_spell_json_file_path = os.path.join(target_dir, spell_json_filename)
+    shutil.copy(spell_json_file_path, target_spell_json_file_path)
+
+print(f"Copied *_spells.json files to {target_dir}")

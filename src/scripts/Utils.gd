@@ -75,14 +75,17 @@ class FileHandler:
 	
 	static func read_json_array_from_txt(txt) -> Array:
 		var test_json_conv = JSON.new()
-		test_json_conv.parse(txt)
+		var error = test_json_conv.parse(txt)
 		var data_parse = test_json_conv.get_data()
-		if data_parse.error != OK:
+		if error != OK:
 			return []
-		return data_parse.result	
+		return data_parse
 	
 	static func read_json_dic_from_file(path) -> Dictionary:
 		return read_json_dictionary_from_txt(read_txt_from_file(path))
+
+	static func read_json_array_from_file(path) -> Array:
+		return read_json_array_from_txt(read_txt_from_file(path))	
 
 	static func read_json_dictionary_from_txt(txt) -> Dictionary:
 #		print(txt)
